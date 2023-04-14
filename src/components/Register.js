@@ -65,7 +65,7 @@ function Register({ errorMessege, handleSubmitRegister }) {
         </form>
         <p className="formAuth__question">
           Уже зарегистрированы?&nbsp;
-          <Link to="/login" className="formAuth__button-login">
+          <Link to="/sign-in" className="formAuth__button-login">
             Войти
           </Link>
         </p>

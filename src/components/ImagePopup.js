@@ -1,22 +1,17 @@
 import React from "react";
+import Popup from "./Popup";
 
 function ImagePopup({ card, onClose }) {
   return (
-    <div
-      className={`popup popup-image ${card.link ? "popup_opened" : ""}`}
-      onClick={onClose}
+    <Popup
+      name="image"
+      onClose={onClose}
+      isOpen={card.link}
+      className="popup__container_type_image"
     >
-      <figure className="popup__figure" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="popup__close-icon"
-          type="button"
-          aria-label="Закрыть"
-          onClick={onClose}
-        ></button>
-        <img className="popup__mask-group" src={card.link} alt={card.name} />
-        <figcaption className="popup__caption">{card.name}</figcaption>
-      </figure>
-    </div>
+      <img className="popup__mask-group" src={card.link} alt={card.name} />
+      <figcaption className="popup__caption">{card.name}</figcaption>
+    </Popup>
   );
 }
 

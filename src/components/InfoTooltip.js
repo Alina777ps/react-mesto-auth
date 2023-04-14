@@ -1,22 +1,17 @@
 import React from "react";
+import Popup from "./Popup";
 
 function InfoTooltip({ name, info, img, isOpen, onClose }) {
   return (
-    <div
-      className={`popup popup-${name} ${isOpen ? "popup_opened" : ""}`}
-      onClick={onClose}
+    <Popup
+      name={name}
+      onClose={onClose}
+      isOpen={isOpen}
+      className="popup__container"
     >
-      <div className="popup__container" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="popup__close-icon"
-          type="button"
-          aria-label="Закрыть"
-          onClick={onClose}
-        ></button>
-        <img className="popup__infoTooltip_img" src={img} alt={info} />
-        <figcaption className="popup__infoTooltip_caption">{info}</figcaption>
-      </div>
-    </div>
+      <img className="popup__infoTooltip_img" src={img} alt={info} />
+      <figcaption className="popup__infoTooltip_caption">{info}</figcaption>
+    </Popup>
   );
 }
 
