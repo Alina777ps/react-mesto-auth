@@ -1,33 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import * as auth from "../utils/auth";
 import { useForm } from '../hooks/useForm';
 import Header from "./Header";
 
-function Login({ handleLogin }) {
-  const [errorMessege, setErrorMessege] = React.useState("");
+function Login({ handleSubmitLogin, errorMessege }) {
+ 
   const {values, handleChange, setValues} = useForm({ email: "", password: "" });
-
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!values.email || !values.password) {
-      setErrorMessege(`Не заполнены поля email или пароль`);
-      return;
-    }
-    auth
-      .authorize(values.password, values.email)
-      .then((data) => {
-        console.log(data);
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
-          handleLogin(values.email);
-          setValues({ email: "", password: "" });
-          navigate("/main", { replace: true });
-        }
-      })
-      .catch((err) => setErrorMessege(err));
+    handleSubmitLogin(values.password, values.email)
   };
 
   return (

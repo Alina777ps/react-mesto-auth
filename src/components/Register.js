@@ -2,27 +2,14 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useForm } from '../hooks/useForm';
-import * as auth from "../utils/auth";
 
-function Register({ setIsRegisterFalse, setIsRegisterTrue }) {
+function Register({ errorMessege, handleSubmitRegister }) {
 
   const {values, handleChange, setValues} = useForm({ email: "", password: "" });
-  const navigate = useNavigate();
-
-  const [errorMessege, setErrorMessege] = React.useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    auth
-      .register(values.password, values.email)
-      .then((data) => {
-        setIsRegisterTrue(true);
-        navigate("/sign-in", { replace: true });
-      })
-      .catch((err) => {
-        setIsRegisterFalse(true);
-        setErrorMessege(err);
-      });
+    handleSubmitRegister(values.password, values.email)
   };
 
   return (

@@ -51,6 +51,7 @@ function App() {
 
   const [isRegisterTrue, setIsRegisterTrue] = React.useState(false);
   const [isRegisterFalse, setIsRegisterFalse] = React.useState(false);
+  const [errorMessege, setErrorMessege] = React.useState("");
 
   const navigate = useNavigate();
 
@@ -168,10 +169,36 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const handleLogin = (email) => {
-    setLoggedIn(true);
-    setUserEmail(email);
-  };
+function handleSubmitRegister(password, email) {
+  auth
+      .register(password, email)
+      .then((data) => {
+        setIsRegisterTrue(true);
+        navigate("/sign-in", { replace: true });
+      })
+      .catch((err) => {
+        setIsRegisterFalse(true);
+        setErrorMessege(err);
+      });
+}
+
+function handleSubmitLogin(password, email) {
+  if (!password || !email) {
+    setErrorMessege(`Не заполнены поля email или пароль`);
+    return;
+  }
+  auth
+    .authorize(password, email)
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem("jwt", data.token);
+        setLoggedIn(true);
+        setUserEmail(email);
+        navigate("/main", { replace: true });
+      }
+    })
+    .catch((err) => setErrorMessege(err));
+}
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
@@ -179,7 +206,7 @@ function App() {
       auth
         .checkToken(jwt)
         .then((res) => {
-          handleLogin(res.data.email);
+          setUserEmail(res.data.email);
           setLoggedIn(true);
           navigate("/main", { replace: true });
         })
@@ -224,14 +251,18 @@ function App() {
 
             <Route
               path="/sign-in"
-              element={<Login handleLogin={handleLogin} />}
+              element={<Login 
+                handleSubmitLogin={handleSubmitLogin}
+                errorMessege={errorMessege} />}
             />
             <Route
               path="/sign-up"
               element={
                 <Register
-                  setIsRegisterTrue={setIsRegisterTrue}
-                  setIsRegisterFalse={setIsRegisterFalse}
+                errorMessege={errorMessege}
+                handleSubmitRegister={handleSubmitRegister}
+                  /*setIsRegisterTrue={setIsRegisterTrue}
+                  setIsRegisterFalse={setIsRegisterFalse}*/
                 />
               }
             />
