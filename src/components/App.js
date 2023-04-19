@@ -264,7 +264,7 @@ function handleSubmitLogin(password, email) {
                 />
               }
             />
-            {/*<Route path="*" element={<PageNotFound />} />*/}
+            <Route path="*" element={<PageNotFound />} />
             <Route
               path="/main"
               element={
