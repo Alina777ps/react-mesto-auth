@@ -261,12 +261,10 @@ function handleSubmitLogin(password, email) {
                 <Register
                 errorMessege={errorMessege}
                 handleSubmitRegister={handleSubmitRegister}
-                  /*setIsRegisterTrue={setIsRegisterTrue}
-                  setIsRegisterFalse={setIsRegisterFalse}*/
                 />
               }
             />
-            <Route path="*" element={<PageNotFound />} />
+            {/*<Route path="*" element={<PageNotFound />} />*/}
             <Route
               path="/react-mesto-auth/main"
               element={
