@@ -230,7 +230,7 @@ function handleSubmitLogin(password, email) {
         <div className="page__container">
           <Routes>
             <Route
-              path="/main"
+              path="/react-mesto-auth/main"
               element={
                 <ProtectedRouteElement
                   element={Main}
@@ -250,13 +250,13 @@ function handleSubmitLogin(password, email) {
             />
 
             <Route
-              path="/sign-in"
+              path="/react-mesto-auth/main/sign-in"
               element={<Login 
                 handleSubmitLogin={handleSubmitLogin}
                 errorMessege={errorMessege} />}
             />
             <Route
-              path="/sign-up"
+              path="/react-mesto-auth/main/sign-up"
               element={
                 <Register
                 errorMessege={errorMessege}
@@ -268,12 +268,12 @@ function handleSubmitLogin(password, email) {
             />
             <Route path="*" element={<PageNotFound />} />
             <Route
-              path="/"
+              path="/react-mesto-auth/main"
               element={
                 loggedIn ? (
-                  <Navigate to="/main" replace />
+                  <Navigate to="/react-mesto-auth/main" replace />
                 ) : (
-                  <Navigate to="/sign-in" replace />
+                  <Navigate to="/react-mesto-auth/main/sign-in" replace />
                 )
               }
             />
