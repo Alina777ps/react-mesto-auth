@@ -14,7 +14,7 @@ function Register({ errorMessege, handleSubmitRegister }) {
 
   return (
     <div>
-      <Header titleButtonHeader="Войти" path="/react-mesto-auth/main/sign-in" userEmail="" />
+      <Header titleButtonHeader="Войти" path="/sign-in" userEmail="" />
       <div className="formAuth">
         <h2 className="formAuth__title">Регистрация</h2>
         <form
@@ -65,7 +65,7 @@ function Register({ errorMessege, handleSubmitRegister }) {
         </form>
         <p className="formAuth__question">
           Уже зарегистрированы?&nbsp;
-          <Link to="/react-mesto-auth/main/sign-in" className="formAuth__button-login">
+          <Link to="/sign-in" className="formAuth__button-login">
             Войти
           </Link>
         </p>
