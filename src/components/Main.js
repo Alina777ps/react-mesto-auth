@@ -11,7 +11,7 @@ function Main(props) {
     <>
       <Header
         titleButtonHeader="Выйти"
-        path="/react-mesto-auth/sign-in"
+        path="/sign-in"
         onClick={props.onClick}
         userEmail={props.userEmail}
       />

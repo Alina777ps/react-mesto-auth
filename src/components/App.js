@@ -174,7 +174,7 @@ function handleSubmitRegister(password, email) {
       .register(password, email)
       .then((data) => {
         setIsRegisterTrue(true);
-        navigate("/react-mesto-auth/sign-in", { replace: true });
+        navigate("/sign-in", { replace: true });
       })
       .catch((err) => {
         setIsRegisterFalse(true);
@@ -194,7 +194,7 @@ function handleSubmitLogin(password, email) {
         localStorage.setItem("jwt", data.token);
         setLoggedIn(true);
         setUserEmail(email);
-        navigate("/react-mesto-auth/main", { replace: true });
+        navigate("/main", { replace: true });
       }
     })
     .catch((err) => setErrorMessege(err));
@@ -208,7 +208,7 @@ function handleSubmitLogin(password, email) {
         .then((res) => {
           setUserEmail(res.data.email);
           setLoggedIn(true);
-          navigate("/react-mesto-auth/main", { replace: true });
+          navigate("/main", { replace: true });
         })
         .catch((error) => console.log(`Произошла ошибка: ${error}`));
     }
@@ -221,7 +221,7 @@ function handleSubmitLogin(password, email) {
 
   function goOut() {
     localStorage.removeItem("jwt");
-    navigate("/react-mesto-auth/sign-in");
+    navigate("/sign-in");
   }
 
   return (
@@ -230,7 +230,7 @@ function handleSubmitLogin(password, email) {
         <div className="page__container">
           <Routes>
             <Route
-              path="/react-mesto-auth/main"
+              path="/main"
               element={
                 <ProtectedRouteElement
                   element={Main}
@@ -250,13 +250,13 @@ function handleSubmitLogin(password, email) {
             />
 
             <Route
-              path="/react-mesto-auth/sign-in"
+              path="/sign-in"
               element={<Login 
                 handleSubmitLogin={handleSubmitLogin}
                 errorMessege={errorMessege} />}
             />
             <Route
-              path="/react-mesto-auth/sign-up"
+              path="/sign-up"
               element={
                 <Register
                 errorMessege={errorMessege}
@@ -266,12 +266,12 @@ function handleSubmitLogin(password, email) {
             />
             <Route path="*" element={<PageNotFound />} />
             <Route
-              path="/react-mesto-auth/main"
+              path="/main"
               element={
                 loggedIn ? (
-                  <Navigate to="/react-mesto-auth/main" replace />
+                  <Navigate to="/main" replace />
                 ) : (
-                  <Navigate to="/react-mesto-auth/sign-in" replace />
+                  <Navigate to="/sign-in" replace />
                 )
               }
             />
