@@ -13,7 +13,7 @@ function Login({ handleSubmitLogin, errorMessege }) {
 
   return (
     <div>
-      <Header titleButtonHeader="Регистрация" path="/sign-up" userEmail="" />
+      <Header titleButtonHeader="Регистрация" path="/react-mesto-auth/sign-up" userEmail="" />
       <div className="formAuth">
         <h2 className="formAuth__title">Вход</h2>
         <form
